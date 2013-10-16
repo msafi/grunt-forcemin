@@ -45,10 +45,11 @@ describe('forcemin', function() {
     done()
   })
 
-  it('should not consider files that have fewer than two dots in them', function(done) {
-    fileOperatedOn = bootstrap(['test/temp/robots.txt'])
+  it('should not add files with fewer than two dots to dictionary, but should still update their contents', function(done) {
+    fileOperatedOn = bootstrap(['test/temp/robots.txt', 'test/temp/mc4593fc.second.script.js.map'])
 
     expect(fileOperatedOn.robots).to.be('robots.txt')
+    expect(grunt.file.read("test/temp/robots.txt")).to.be('mc4593fc.second.script.js.map')
     done()
   })
 

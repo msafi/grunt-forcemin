@@ -20,15 +20,6 @@ module.exports = function(grunt) {
     this.files.forEach(function(f) {
       filteredFilesArr = f.src.filter(
         function(filepath) {
-          var filename = path.basename(filepath)
-
-          // Make sure there are at least two dots in the name. Otherwise it means the file is not versioned and should
-          // not be added to the dictionary
-          if (filename.match(/[.]/g).length < 2) {
-            grunt.log.warn("\n" + filename + ' doesn\'t look revisioned. (Skipped)\n')
-            return false
-          }
-
           if (!grunt.file.exists(filepath)) {
             grunt.log.warn('Source file "' + filepath + '" not found.')
             return false
@@ -42,6 +33,13 @@ module.exports = function(grunt) {
       filteredFilesArr.forEach(
         function(filepath) {
           var filename = path.basename(filepath)
+
+          // Make sure there are at least two dots in the name. Otherwise it means the file is not versioned and should
+          // not be added to the dictionary
+          if (filename.match(/[.]/g).length < 2) {
+            grunt.log.warn("\n'" + filename + '\' doesn\'t look revisioned. References to it won\'t be updated.\n')
+            return
+          }
 
           unversionedFilename = filename.replace(/^(.*?)\./, '')
           dictionary[unversionedFilename] = filename
