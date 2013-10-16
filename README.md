@@ -22,9 +22,9 @@ A build process utilizing this plugin could go like this
 
 1. [Clean](https://github.com/gruntjs/grunt-contrib-clean) the build directory by removing everything in it
 2. [Copy](https://github.com/gruntjs/grunt-contrib-copy) files from the source directory to the build directory
-3. [Uglify](https://github.com/gruntjs/grunt-contrib-uglify) my JavaScript files
-4. [Minify my HTML](https://github.com/gruntjs/grunt-contrib-htmlmin) files
-5. [Minify my CSS](https://github.com/gruntjs/grunt-contrib-cssmin) files
+3. [Uglify](https://github.com/gruntjs/grunt-contrib-uglify) JavaScript files
+4. [Minify HTML](https://github.com/gruntjs/grunt-contrib-htmlmin) files
+5. [Minify CSS](https://github.com/gruntjs/grunt-contrib-cssmin) files
 6. [Revision](https://github.com/cbas/grunt-rev/) all files
 7. Change the references inside the files to the new revisioned names using `forcemin`
 
@@ -59,6 +59,6 @@ grunt.initConfig({
 ```
 
 ## License
-Public domain.
+Unlicensed. Public domain.
 
 Backup everything before using this plugin. I guarantee nothing. If my code completely obliterates your project, I'm not responsible.

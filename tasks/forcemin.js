@@ -1,15 +1,15 @@
 /*
- * forcemin
- * https://github.com/msafi/forcemin
+ * grunt-forcemin
+ * https://github.com/msafi/grunt-forcemin
  *
- * Released into the public domain.
+ * Public domain. (Unlicensed)
  */
 'use strict';
 
 module.exports = function(grunt) {
   var path = require('path')
 
-  grunt.registerMultiTask('forcemin', 'Mindlessly changes references in files that you specify to their minified versions.', function() {
+  grunt.registerMultiTask('forcemin', 'Mindlessly updates references to revisioned files in your source code to bust browser cache', function() {
     var unversionedFilename = ''
     var dictionary = {}
     var regexPattern = ''
