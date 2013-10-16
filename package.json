@@ -1,0 +1,47 @@
+{
+  "name": "grunt-forcemin",
+
+  "description": "Mindlessly updates references to revisioned files in your source code",
+
+  "version": "0.1.0",
+
+  "homepage": "https://github.com/cbas/grunt-forcemin",
+
+  "author": {
+    "name": "MK Safi",
+    "email": "msafi@msafi.com",
+    "url": "http://msafi.com"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/msafi/grunt-forcemin.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/msafi/grunt-forcemin/issues"
+  },
+
+  "licenses": [{
+    "type": "Public domain",
+    "url": "https://github.com/msafi/grunt-forcemin/blob/master/LICENSE"
+  }],
+
+  "main": "Gruntfile.js",
+
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+
+  "scripts": {
+    "test": "mocha test/."
+  },
+
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": "*",
+    "grunt": "*"
+  },
+
+  "keywords": ["gruntplugin", "minification", "browser cache"]
+}

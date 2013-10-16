@@ -1,0 +1,6 @@
+var myTemplates = {
+  "foo": "foo.js",
+  "bar": "bar.css",
+  "baz": "baz.html",
+  "qux": "foo.js.map"
+}
