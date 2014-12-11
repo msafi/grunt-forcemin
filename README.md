@@ -1,6 +1,6 @@
 # forcemin
 
-Say you have a bunch of revisioned files, each one looks something like `ae35dd05.app.js`, but in your source code, you are actually referencing those files by their original names, `app.js`. 
+Say you have a bunch of revisioned files, each one looks something like `ae35dd05.app.js`, but in your source code, you are actually referencing those files by their original names, `app.js`.
 
 How do you update your source code references automatically as part of your build process? This Grunt plugin can help!
 
@@ -50,10 +50,35 @@ In your project's Gruntfile, add a section named `forcemin` to the data object p
 ```js
 grunt.initConfig({
   forcemin: {
-    src: [
-      'build/client/**/*.{js,css,html,ejs}',
-      '!build/client/**/vendor/**'
-    ]
+    dist: {
+        files: {
+            src: [
+              'build/client/**/*.{js,css,html,ejs}',
+              '!build/client/**/vendor/**'
+            ]
+        }
+    }
+  }
+})
+```
+
+Additionally, it's possible to convince forcemin to ignore certain file patterns to prevent it from clobbering binary files and others
+you want to replaced but not modify:
+
+```js
+grunt.initConfig({
+  forcemin: {
+    dist: {
+        options: {
+            readOnly: ['**/*.{png,gif,jpeg,jpg}']
+        },
+        files: {
+            src: [
+              'build/client/**/*.{js,css,html,ejs,png,gif,jpeg,jpg}',
+              '!build/client/**/vendor/**'
+            ]
+        }
+    }
   }
 })
 ```
