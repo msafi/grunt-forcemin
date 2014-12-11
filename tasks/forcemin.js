@@ -15,6 +15,7 @@ module.exports = function(grunt) {
     var regexPattern = ''
     var filenamesArr = []
     var filteredFilesArr = []
+    var readOnlyFiles = this.data.options ? this.data.options.readOnly ? this.data.options.readOnly : [] : [];
 
     // First, build a dictionary
     this.files.forEach(function(f) {
@@ -57,27 +58,31 @@ module.exports = function(grunt) {
 
       // Scan the content of each file and mindlessly replace references
       filteredFilesArr.forEach(function(filepath) {
-        var fileContents = grunt.file.read(filepath)
-        var replacedSomething = false
-
         grunt.log.write("\n" + filepath + ':\n')
 
-        fileContents = fileContents.replace(regexPattern, function(match, $1) {
-          // if match isn't preceded by a dot (mimicing a negative lookbehind)
-          if ($1 === undefined) {
-            replacedSomething = true
-            grunt.log.write("    " + match + ' ').ok(dictionary[match])
+        if(!grunt.file.isMatch(readOnlyFiles, filepath)) {
+            var fileContents = grunt.file.read(filepath)
+            var replacedSomething = false
 
-            return dictionary[match]
-          } else {
-            return match
-          }
-        })
+            fileContents = fileContents.replace(regexPattern, function(match, $1) {
+              // if match isn't preceded by a dot (mimicing a negative lookbehind)
+              if ($1 === undefined) {
+                replacedSomething = true
+                grunt.log.write("    " + match + ' ').ok(dictionary[match])
 
-        if (!replacedSomething)
-          grunt.log.write('    Nothing was replaced here' + '\n')
+                return dictionary[match]
+              } else {
+                return match
+              }
+            })
 
-        grunt.file.write(filepath, fileContents)
+            if (!replacedSomething)
+              grunt.log.write('    Nothing was replaced here' + '\n')
+
+            grunt.file.write(filepath, fileContents)
+        } else {
+            grunt.log.write('    Configured as read only, skipping.\n');
+        }
       })
     })
   })
